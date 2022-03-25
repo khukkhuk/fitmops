@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -168,17 +169,27 @@ th {
   <img src="../img/logo_kmutnb.png" style="margin:70px 0px 10px 50px">
   <center>
     <span>
-      นายสรรเพชญ  กิจเปรื่อง
+      <!-- นายสรรเพชญ  กิจเปรื่อง -->
+      <?php 
+        // print_r($_SESSION);
+      echo $_SESSION['name']." ".$_SESSION['lastname'];?>
     </span>
     <br>
     <span>
-      6206021420109@fitm.kmutnb.ac.th
+      <!-- 6206021420109@fitm.kmutnb.ac.th -->
+      <?php echo $_SESSION['email'];?>
     </span>  
   </center>
   <a style="margin-top:20px" class="active" href="#home">หน้าหลัก</a>
-  <a href="personal.php">ข้อมูลส่วนตัว</a>
-  <a href="document_info.php">ตัวอย่างเอกสารคำร้อง</a>
-  <a href="application.php">ยื่นคำร้อง</a>
+  <a href="form-index.php">ฟอร์ม</a>
+  <a href="app-index.php">ยื่นคำร้อง</a>
+  <a href="information.php">ข้อมูลส่วนตัว</a>
+  <a href="person-index.php">รายชื่อเจ้าหน้าที่ บุคลากร</a>
+  <a href="student-index.php">รายชื่อนิสิตนักศึกษา</a>
+  <a href="role-index.php">ตำแหน่ง</a>
+  <a href="role-list.php">จัดการตำแหน่ง</a>
+  
+
 </div>
 <div style="top:0;position:fixed;right: 0;background-color: #ff5151;height: 40px;width:100%;text-align: right;padding-top:6px;padding-bottom: -10px;z-index: 99;">
   <span>ยินดีต้อนรับ นายสรรเพชญ กิจเปรื่อง</span>

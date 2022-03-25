@@ -38,7 +38,7 @@
 		<div class="col-xl-8" style="margin-top:5%;margin-left: 15%;">	
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-4">
-					<img src="logo.png" width="220">		
+					<img src="img/logo.png" width="220">		
 				</div>
 				<div class="col-8">
 					<center>
@@ -56,7 +56,7 @@
 						<div class="row">
 							<div style="background-color:  #3e93c7;border-radius: 15px;margin-top:-15px;padding-top:0px;display: inline-block;">
 								<center>
-								<img src="user.png" width="50" style="margin-top:-10px"><label style="color:white;font-size:40px;margin-left:20px">สมัครสมาชิก</label>
+								<img src="img/user.png" width="50" style="margin-top:-10px"><label style="color:white;font-size:40px;margin-left:20px">สมัครสมาชิก</label>
 							</div>
 						</div>
 						<div class="row">	
@@ -129,6 +129,7 @@
 	    	สมัครสมาชิกสำเร็จ
 	    </div>
 	</div>
+  	<script type="text/javascript" src="js/jquery.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

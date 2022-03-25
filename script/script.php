@@ -1,12 +1,18 @@
 <?php 	
+session_start();
 require("../connect.php");
 if($_POST['type'] == "login"){
-	// echo $_POST['username'];
-	// echo $_POST['password'];
 	$sql ="SELECT * FROM students where email='".$_POST["username"]."' AND password='".$_POST["password"]."'";
 	$result = mysqli_query($con,$sql);
+	// print_r($result);
   	$rowcount=mysqli_num_rows($result);
   	if($rowcount>0){
+  		$data=mysqli_fetch_assoc($result);
+  		// print_r($data);
+		$_SESSION['name'] = $data['name'];
+		$_SESSION['id'] = $data['student_id'];
+		$_SESSION['lastname'] = $data['lastname'];
+		$_SESSION['email'] = $data['email'];
 		echo "true";
   	}else{
   		echo "false";

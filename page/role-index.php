@@ -29,7 +29,7 @@ max-width:100%
 	<?php
 		$select = $sql->select("*","tb_role");
 		if(isset($_GET['txt_search']) && $_GET['txt_search'] != null){
-			$select = $sql->select("*","tb_role","name = '".$_GET['txt_search']."'");		
+			$select = $sql->select("*","tb_role","name like '%".$_GET['txt_search']."%'");		
 		}
 		$i = 1;
 		while($row = mysqli_fetch_assoc($select)){
