@@ -83,6 +83,7 @@ span{
   font-size: 18px;
 }
 table {
+  /*border: 1px solid black;*/
   border-radius: 15px;
   border-collapse: collapse;
   width: 100%;
@@ -94,10 +95,14 @@ th, td {
   text-align: center;
   padding: 8px;
 }
-td{
-  /*border-bottom: 1px solid #ddd*/
+tr{
+  border-top: 1px solid #ddd;
+  border-width: 80%;
 }
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even){
+  /*background-color: #f2f2f2*/
+
+}
 
 th {
   /*background-color: #04AA6D;*/
@@ -192,7 +197,7 @@ th {
 
 </div>
 <div style="top:0;position:fixed;right: 0;background-color: #ff5151;height: 40px;width:100%;text-align: right;padding-top:6px;padding-bottom: -10px;z-index: 99;">
-  <span>ยินดีต้อนรับ นายสรรเพชญ กิจเปรื่อง</span>
+  <span>ยินดีต้อนรับ  <?php echo $_SESSION['name']." ".$_SESSION['lastname'];?></span>
   <a style="margin:0px 15px;text-decoration:none;color:black;font-size:18px" href="logout.php">ออกจากระบบ</a>
 </div>
 <!-- 

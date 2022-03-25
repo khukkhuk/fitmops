@@ -8,7 +8,6 @@
 	}
 </style>
 <div class="content"> 
-
 	<div class="row">
 		<div class="col-md-6" style="display:flex;">
 			<input  class="form-control" type="text" style="width:250px;margin-right:15px" name="txt_search" id="txt_search" class="form-control">
@@ -32,7 +31,7 @@
 	<?php
 		$select = $sql->select("*","students");
 		if(isset($_GET['txt_search']) && $_GET['txt_search'] != null){
-			$select = $sql->select("*","students","(name like '%".$_GET['txt_search']."%' or student_id like '%".$_GET['txt_search']."%' )");		
+			$select = $sql->select("*","students","(name like '%".$_GET['txt_search']."%' or email like '%".$_GET['txt_search']."%'  or lastname like '%".$_GET['txt_search']."%'  or student_id like '%".$_GET['txt_search']."%' )");		
 		}
 		// print_r($select);
 		$i = 1;
@@ -44,7 +43,7 @@
 			<td><?php echo $row['email']; ?></td>
 			<td><?php echo $row['tel']; ?></td>
 			<td><?php echo $row['department_abb']; ?></td>
-			<td>
+			<td style="display:flex;">
 				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-primary">
 					<img src="../img/1x/edit.png">
 				</a>
