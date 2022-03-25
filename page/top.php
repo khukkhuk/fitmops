@@ -174,14 +174,11 @@ th {
   <img src="../img/logo_kmutnb.png" style="margin:70px 0px 10px 50px">
   <center>
     <span>
-      <!-- นายสรรเพชญ  กิจเปรื่อง -->
       <?php 
-        // print_r($_SESSION);
       echo $_SESSION['name']." ".$_SESSION['lastname'];?>
     </span>
     <br>
     <span>
-      <!-- 6206021420109@fitm.kmutnb.ac.th -->
       <?php echo $_SESSION['email'];?>
     </span>  
   </center>

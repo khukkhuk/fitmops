@@ -44,24 +44,42 @@
 			<td><?php echo $row['tel']; ?></td>
 			<td><?php echo $row['department_abb']; ?></td>
 			<td style="display:flex;">
-				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-primary">
+				<a href="#EditModal<?php echo $row['student_id'];?>" class="btn btn-primary">
 					<img src="../img/1x/edit.png">
 				</a>
 					<form method="post" action="">
-						<div id="EditModal<?php echo $row['id'];?>" class="modalDialog">
+						<div id="EditModal<?php echo $row['student_id'];?>" class="modalDialog">
 					    	<div>	
 					    	<a href="#close" title="Close" class="close">x</a>
 					        	<h4 style="margin-top: 12px;">แก้ไขข้อมูล</h4>
 					        	<div class="row">
 					        		<div class="col-12">
-					        			<label class="form-label">รายการคำร้อง</label>
+					        			<label class="form-label">ชื่อ</label>
 					        			<input type="text" name="name" value="<?php echo $row['name'];?>" class="form-control">
+					        		</div>
+					        	</div>
+					        	<div class="row">
+					        		<div class="col-12">
+					        			<label class="form-label">นามสกุล</label>
+					        			<input type="text" name="lastname" value="<?php echo $row['lastname'];?>" class="form-control">
+					        		</div>
+					        	</div>
+					        	<div class="row">
+					        		<div class="col-12">
+					        			<label class="form-label">อีเมล</label>
+					        			<input type="text" name="email" value="<?php echo $row['email'];?>" class="form-control">
+					        		</div>
+					        	</div>
+					        	<div class="row">
+					        		<div class="col-12">
+					        			<label class="form-label">เบอร์โทร</label>
+					        			<input type="text" name="tel" value="<?php echo $row['tel'];?>" class="form-control">
 					        		</div>
 					        	</div>
 					        	<div class="row" style="margin-top:7px">
 					        		<div class="col-12">
-					        			<input type="text" hidden name="method" value="insert">
-					        			<input type="text" hidden name="id" value="<?php echo $row['id'];?>">
+					        			<input type="text" hidden name="method" value="update">
+					        			<input type="text" hidden name="id" value="<?php echo $row['student_id'];?>">
 					        			<input type="submit" value="แก้ไขข้อมูล" class="btn btn-primary">
 					        		</div>
 					        	</div>
@@ -69,7 +87,7 @@
 						</div>		
 					</form>
 
-				<a href="form-index.php/?id=<?php echo $row['id'];?>" class="btn btn-danger">
+				<a href="student-index.php/?id=<?php echo $row['student_id'];?>" class="btn btn-danger">
 					
 					<img src="../img/1x/delete.png">
 				</a>
@@ -105,11 +123,14 @@
 
 </div>
 <?php 
-	$url = "form-index.php";
+	$url = "student-index.php";
 	$sec = 0;
+
+	
 	if(isset($_POST['method'])){	
+	print_r($_POST['method']);
 		if($_POST['method'] == "insert"){
-			$insert = $sql->insert("tb_student","name","'".$_POST['name']."'");
+			$insert = $sql->insert("students","name","'".$_POST['name']."'");
 			if($insert){
 				echo "<script>alert('สำเร็จ')</script>";	
 			}else{
@@ -118,17 +139,22 @@
 		}
 		if($_POST['method'] == "update"){
 			$name = $_POST['name'];
-			$update = $sql->update("tb_student","name = '$name'","id=".$_POST['id']."");
+			$lastname = $_POST['lastname'];
+			$email = $_POST['email'];
+			$tel = $_POST['tel'];
+			$update = $sql->update("students","name = '$name',lastname = '$lastname',email = '$email'
+				,tel = '$tel'","student_id=".$_POST['id']."");
 			if($update){
 				echo "<script>alert('สำเร็จ')</script>";	
 			}else{
+				// echo $sql;
 				echo "<script>alert('ไม่สำเร็จ')</script>";
 			}
 		}
 		$helper->redirect($sec,$url);
 	}
 	if(isset($_GET['id'])){
-		$delete = $sql->delete("tb_student","id=".$_GET['id']."");
+		$delete = $sql->delete("students","id=".$_GET['id']."");
 		if($delete){
 			echo "<script>alert('สำเร็จ')</script>";	
 		}else{
