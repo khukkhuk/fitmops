@@ -154,7 +154,7 @@
 		$helper->redirect($sec,$url);
 	}
 	if(isset($_GET['id'])){
-		$delete = $sql->delete("students","id=".$_GET['id']."");
+		$delete = $sql->delete("students","student_id=".$_GET['id']."");
 		if($delete){
 			echo "<script>alert('สำเร็จ')</script>";	
 		}else{

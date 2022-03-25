@@ -174,13 +174,12 @@ th {
   <img src="../img/logo_kmutnb.png" style="margin:70px 0px 10px 50px">
   <center>
     <span>
-      <?php 
-      echo $_SESSION['name']." ".$_SESSION['lastname'];?>
+      <?php echo $_SESSION['name']." ".$_SESSION['lastname'];?>
     </span>
     <br>
     <span>
       <?php echo $_SESSION['email'];?>
-    </span>  
+    </span>
   </center>
   <a style="margin-top:20px" class="active" href="#home">หน้าหลัก</a>
   <a href="form-index.php">ฟอร์ม</a>
@@ -189,25 +188,11 @@ th {
   <a href="person-index.php">รายชื่อเจ้าหน้าที่ บุคลากร</a>
   <a href="student-index.php">รายชื่อนิสิตนักศึกษา</a>
   <a href="role-index.php">ตำแหน่ง</a>
-  <a href="role-list.php">จัดการตำแหน่ง</a>
   
 
 </div>
+
 <div style="top:0;position:fixed;right: 0;background-color: #ff5151;height: 40px;width:100%;text-align: right;padding-top:6px;padding-bottom: -10px;z-index: 99;">
   <span>ยินดีต้อนรับ  <?php echo $_SESSION['name']." ".$_SESSION['lastname'];?></span>
   <a style="margin:0px 15px;text-decoration:none;color:black;font-size:18px" href="logout.php">ออกจากระบบ</a>
 </div>
-<!-- 
-<div class="col-12" style="display:flex;">
-  <div class="row" style="justify-content: center;">
-    <center>
-    <div>
-      <img src="../img/logo.png">
-    </div>
-    <div>
-      FITM Online Petition Service
-      <br>
-      ระบบคำร้องออนไลน์
-    </div>
-  </div>
-</div> -->

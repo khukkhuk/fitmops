@@ -1,72 +1,66 @@
 <?php 
 	include("top.php");
 ?>
-<style type="text/css">
-	a{
-		margin: 5px;
-		padding: 15px;
-	}
-</style>
 <div class="content"> 
-	<div class="row">
-		<div class="col-md-6" style="display:flex;">
-			<input  class="form-control" type="text" style="width:250px;margin-right:15px" name="txt_search" id="txt_search" class="form-control">
-					<!-- <input type="submit" class="btn btn-primary" id="btn_search" value="ค้นหา"> -->
-					<button id="btn_search" class="btn btn-primary"  ><img src="../img/1x/search.png"></button>
-			<a href="#openModal" class="btn btn-primary">
-					<img src="../img/1x/add.png">
-			</a>
-		</div>
-	</div>	
-<table id="table_id" class="" style="width:80%;margin-top:8px">
-	<tr>
-		<td style="width:10%">#</td>
-		<td style="width:20%">ชื่อตำแหน่ง</td>
-		<td style="width:10%">จัดการ</td>
-	</tr>
+<style type="text/css">
+	table {
+width:100%;
+display: inline-block;
+}
+td, th {
+max-width:100%
+}
+</style>
+	<table id="table_id" class="" style="width:60%">
+		<tr >
+			<th colspan="2" width="2%">
+					<input  class="form-control" type="text" style="width:250px;" name="txt_search" id="txt_search" class="form-control">
+					<input type="submit" class="btn btn-primary" id="btn_search" value="ค้นหา">
+			</th>
+			<th colspan="1">
+				<a href="#openModal" class="btn btn-primary">เพิ่มข้อมูล</a>
+			</th>
+		</tr>
+		<tr>
+			<td>#</td>
+			<td>รายการ</td>		<td>จัดการ</td>
+		</tr>
 
 	<?php
 		$select = $sql->select("*","tb_role");
 		if(isset($_GET['txt_search']) && $_GET['txt_search'] != null){
-			$select = $sql->select("*","tb_role","(name like '%".$_GET['txt_search']."%' )");		
+			$select = $sql->select("*","tb_role","name like '%".$_GET['txt_search']."%'");		
 		}
-		// print_r($select);
 		$i = 1;
 		while($row = mysqli_fetch_assoc($select)){
 	?>
 		<tr>
-			<td><?php echo $row['id']; ?></td>
-			<td><?php echo $row['name']; ?>
-			<td style="display:flex;">
-				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-primary">
-					<img src="../img/1x/edit.png">
-				</a>
+			<td><?php echo $i++; ?></td>
+			<td><?php echo $row['name']; ?></td>
+			<td style="white-space:nowrap;">
+				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-warning" style="width:60px">แก้ไข</a>
+				<a href="../page/role-index.php?id=<?php echo $row['id'];?>" class="btn btn-danger" style="width:60px">ลบ</a>
 					<form method="post" action="">
 						<div id="EditModal<?php echo $row['id'];?>" class="modalDialog">
 					    	<div>	
 					    	<a href="#close" title="Close" class="close">x</a>
-					        	<h4 style="margin-top: 12px;">แก้ไขข้อมูล</h4>
+					        	<h4 style="margin-top: 12px;">เพิ่มข้อมูล</h4>
 					        	<div class="row">
 					        		<div class="col-12">
-					        			<label class="form-label">ชื่อ</label>
-					        			<input type="text" name="name" value="<?php echo $row['name'];?>" class="form-control">
+					        			<label class="form-label">ตำแหน่ง</label>
+					        			<input type="text" name="name" class="form-control" value="<?php echo $row['name'];?>">
 					        		</div>
 					        	</div>
 					        	<div class="row" style="margin-top:7px">
 					        		<div class="col-12">
-					        			<input type="text" hidden name="method" value="update">
 					        			<input type="text" hidden name="id" value="<?php echo $row['id'];?>">
-					        			<input type="submit" value="แก้ไขข้อมูล" class="btn btn-primary">
+					        			<input type="text" hidden name="method" value="update">
+					        			<input type="submit" value="เพิ่มข้อมูล" class="btn btn-primary">
 					        		</div>
 					        	</div>
 					    	</div>
 						</div>		
 					</form>
-
-				<a href="role-index.php/?id=<?php echo $row['id'];?>" class="btn btn-danger">
-					
-					<img src="../img/1x/delete.png">
-				</a>
 			</td>
 		</tr>
 	<?php
@@ -83,7 +77,7 @@
         	<h4 style="margin-top: 12px;">เพิ่มข้อมูล</h4>
         	<div class="row">
         		<div class="col-12">
-        			<label class="form-label">ชื่อ</label>
+        			<label class="form-label">ตำแหน่ง</label>
         			<input type="text" name="name" class="form-control">
         		</div>
         	</div>
@@ -99,12 +93,10 @@
 
 </div>
 <?php 
+
 	$url = "role-index.php";
 	$sec = 0;
-
-	
 	if(isset($_POST['method'])){	
-	print_r($_POST['method']);
 		if($_POST['method'] == "insert"){
 			$insert = $sql->insert("tb_role","name","'".$_POST['name']."'");
 			if($insert){
@@ -114,15 +106,12 @@
 			}
 		}
 		if($_POST['method'] == "update"){
+			// echo "<script>alert('แก้ไข')</script>";
 			$name = $_POST['name'];
-			$lastname = $_POST['lastname'];
-			$email = $_POST['email'];
-			$tel = $_POST['tel'];
 			$update = $sql->update("tb_role","name = '$name'","id=".$_POST['id']."");
 			if($update){
 				echo "<script>alert('สำเร็จ')</script>";	
 			}else{
-				// echo $sql;
 				echo "<script>alert('ไม่สำเร็จ')</script>";
 			}
 		}
@@ -135,8 +124,7 @@
 		}else{
 			echo "<script>alert('ไม่สำเร็จ')</script>";
 		}
-		// header("Refresh:0");
-		$helper->redirect($sec,"/project/page/".$url);
+		$helper->redirect($sec,$url);
 	}
 ?>
 <?php 

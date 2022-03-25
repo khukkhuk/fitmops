@@ -13,6 +13,7 @@ if($_POST['type'] == "login"){
 		$_SESSION['id'] = $data['student_id'];
 		$_SESSION['lastname'] = $data['lastname'];
 		$_SESSION['email'] = $data['email'];
+		$_SESSION['tel'] = $data['tel'];
 		echo "true";
   	}else{
   		echo "false";
