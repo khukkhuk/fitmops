@@ -69,7 +69,7 @@
 						<div class="row">
 							<div class="col-md-12">	
 								<!-- <label>username</label> -->
-								<input class="form-control" style="background-color: #DADADA; border-radius: 15px;padding: 0px 25px;" type="text" id="password" name="password" placeholder="รหัสผ่าน" required>
+								<input class="form-control" style="background-color: #DADADA; border-radius: 15px;padding: 0px 25px;" type="password" id="password" name="password" placeholder="รหัสผ่าน" required>
 							</div>
 						</div>
 						<div class="row">
@@ -166,12 +166,23 @@
 					url:"script/script.php",
 					success : function(res){
 						// alert(res)
-						if(res == "true"){
+						if(res == "std"){
+			    			$('#loginsuccess').toast('show');
+			    			window.location="page/index.php";
+						}
+						else if(res == "teacher"){
+			    			$('#loginsuccess').toast('show');
+			    			window.location="page/teacher-index.php";
+						}
+						else if(res == "officer"){
+			    			$('#loginsuccess').toast('show');
+			    			window.location="page/index.php";
+						}
+						else if(res == "admin"){
 			    			$('#loginsuccess').toast('show');
 			    			window.location="page/index.php";
 						}else{
-			    			$('#fail').toast('show');
-
+		    				$('#fail').toast('show');
 						}
 					}
 				})

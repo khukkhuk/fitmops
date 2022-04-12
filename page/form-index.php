@@ -20,10 +20,10 @@
 	</div>	
 <table id="table_id" class="" style="width:80%;margin-top:8px">
 	<tr>
-		<td style="width:20%">รายการ</td>
-		<td style="width:10%">ไฟล์</td>
+		<td style="width:10%">รายการ</td>
+		<td style="width:15%">ไฟล์</td>
 		<td style="width:15%">ตัวอย่างเอกสาร</td>
-		<td style="width:10%">จัดการ</td>
+		<td style="width:5%">จัดการ</td>
 	</tr>
 
 	<?php
@@ -42,28 +42,34 @@
 					$result_form_doc = $sql->select("*","tb_form_doc","type='file'  AND form_id = '".$row['id']."'");
 					while($row_file = mysqli_fetch_assoc($result_form_doc)){
 				?>
-					<a href="upload/<?php echo $row_file['doc_path']; ?>"><?php echo $row_file['doc_name'];?></a>
+			<div style="width: 100%;text-align:right;display:flex;margin-top:-35px">
+					<a target="_blank" href="<?php echo $row_file['doc_path']; ?>"><?php echo $row_file['doc_name'];?></a>
 					<a href="?del_doc=<?php echo $row_file['id'];?>">ลบ</a>
+			</div>
 				<?php
 					}
 				?>
 			</td>
-			<td>
+			<td style="">
+				<center>
 				<?php 
 					$result_form_exam = $sql->select("*","tb_form_doc","type='exam'  AND form_id = '".$row['id']."'");
 					while($row_exam = mysqli_fetch_assoc($result_form_exam)){
 				?>
-					<a href="upload/<?php echo $row_exam['doc_path']; ?>"><?php echo $row_exam['doc_name'];?></a>
+			<div style="width: 100%;text-align:right;display:flex;margin-top:-35px">
+					<a  target="_blank"href="<?php echo $row_exam['doc_path']; ?>"><?php echo $row_exam['doc_name'];?></a>
 					<a href="?del_doc=<?php echo $row_exam['id'];?>">ลบ</a>
+			</div>
 				<?php
 					}
-				?></td>
+				?>
+			</center>
+			</td>
 			<td style="display:flex;">
-
 				<a href="#FileModal<?php echo $row['id'];?>" class="btn btn-warning">
 					<img src="../img/1x/add.png">
 				</a>
-					<form method="post" action="">
+					<form method="post" action="" enctype="multipart/form-data">
 						<div id="FileModal<?php echo $row['id'];?>" class="modalDialog">
 					    	<div>	
 					    	<a href="#close" title="Close" class="close">x</a>
@@ -77,9 +83,9 @@
 					        	<div class="row">
 					        		<div class="col-12">
 					        			<label class="form-label">ประเภท</label>
-					        			<select name="type" class="form-control">
+					        			<select name="doc_type" class="form-control" required />
 					        				<option hidden>กรุณาเลือกประเภทเอกสาร</option>
-					        				<option value="exam">เอกสารตัวอย่าง</option>
+					        				<option value="exam" selected>เอกสารตัวอย่าง</option>
 					        				<option value="file">ไฟล์เปล่า</option>
 					        			</select>
 					        		</div>
@@ -94,8 +100,6 @@
 					    	</div>
 						</div>		
 					</form>
-
-
 				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-primary">
 					<img src="../img/1x/edit.png">
 				</a>
@@ -106,26 +110,8 @@
 					        	<h4 style="margin-top: 12px;">แก้ไขข้อมูล</h4>
 					        	<div class="row">
 					        		<div class="col-12">
-					        			<label class="form-label">ชื่อ</label>
+					        			<label class="form-label">ชื่อรายการ</label>
 					        			<input type="text" name="name" value="<?php echo $row['name'];?>" class="form-control">
-					        		</div>
-					        	</div>
-					        	<div class="row">
-					        		<div class="col-12">
-					        			<label class="form-label">นามสกุล</label>
-					        			<input type="text" name="lastname" value="<?php echo $row['lastname'];?>" class="form-control">
-					        		</div>
-					        	</div>
-					        	<div class="row">
-					        		<div class="col-12">
-					        			<label class="form-label">อีเมล</label>
-					        			<input type="text" name="email" value="<?php echo $row['email'];?>" class="form-control">
-					        		</div>
-					        	</div>
-					        	<div class="row">
-					        		<div class="col-12">
-					        			<label class="form-label">เบอร์โทร</label>
-					        			<input type="text" name="tel" value="<?php echo $row['tel'];?>" class="form-control">
 					        		</div>
 					        	</div>
 					        	<div class="row" style="margin-top:7px">
@@ -148,8 +134,6 @@
 	<?php
 		}
 	?>
-
-
 </table>
 
 <form method="post" action="">
@@ -177,15 +161,16 @@
 <?php 
 	$url = "form-index.php";
 	$sec = 0;
-
-	
-	if(isset($_POST['method'])){	
+	if(isset($_POST['method'])){
+	// if($sec == 1){	
 	print_r($_POST['method']);
 
 		if($_POST['method'] == "insert_file"){
-			//เพิ่มฟอร์ม encryp multipath
-			//คัดลอกไฟล์
-			$insert = $sql->insert("tb_form_doc","name","'".$_POST['name']."'");
+			print_r($_FILES);
+			$file = $_FILES['doc'];
+			$directory = "../document/".$_POST['doc_type']."/".$file['name'] ;
+			copy($file['tmp_name'],$directory);
+			$insert = $sql->insert("tb_form_doc","doc_name,form_id,doc_path,type,status"," '".$file['name']."','".$_POST['id']."','".$directory."','".$_POST['doc_type']."', 'on'");
 			if($insert){
 				echo "<script>alert('สำเร็จ')</script>";	
 			}else{
@@ -202,9 +187,6 @@
 		}
 		if($_POST['method'] == "update"){
 			$name = $_POST['name'];
-			$lastname = $_POST['lastname'];
-			$email = $_POST['email'];
-			$tel = $_POST['tel'];
 			$update = $sql->update("tb_form","name = '$name'","id=".$_POST['id']."");
 			if($update){
 				echo "<script>alert('สำเร็จ')</script>";	
@@ -232,7 +214,7 @@
 		}else{
 			echo "<script>alert('ไม่สำเร็จ')</script>";
 		}
-		// header("Refresh:0");
+		header("Refresh:0");
 		$helper->redirect($sec,"/project/page/".$url);
 	}
 

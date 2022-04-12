@@ -23,7 +23,8 @@ max-width:100%
 		</tr>
 		<tr>
 			<td>#</td>
-			<td>รายการ</td>		<td>จัดการ</td>
+			<td>รายการ</td>
+			<td>จัดการ</td>
 		</tr>
 
 	<?php

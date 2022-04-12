@@ -6,7 +6,7 @@ if($_POST['type'] == "login"){
 	$result = mysqli_query($con,$sql);
 	// print_r($result);
   	$rowcount=mysqli_num_rows($result);
-  	if($rowcount>0){
+  	if($rowcount>0){ // found student
   		$data=mysqli_fetch_assoc($result);
   		// print_r($data);
 		$_SESSION['name'] = $data['name'];
@@ -14,9 +14,25 @@ if($_POST['type'] == "login"){
 		$_SESSION['lastname'] = $data['lastname'];
 		$_SESSION['email'] = $data['email'];
 		$_SESSION['tel'] = $data['tel'];
-		echo "true";
-  	}else{
-  		echo "false";
+		echo "std";
+  	}else{ //other
+		$sql1 ="SELECT * FROM tb_person where email='".$_POST["username"]."' AND password='".$_POST["password"]."'";
+		$result1 = mysqli_query($con,$sql1);
+		// print_r($result);
+	  	$rowcount1 = mysqli_num_rows($result1);
+	  	if($rowcount>0){
+  		$data=mysqli_fetch_assoc($result);
+  		// print_r($data);
+		$_SESSION['name'] = $data['name'];
+		$_SESSION['id'] = $data['id'];
+		$_SESSION['lastname'] = $data['lastname'];
+		$_SESSION['email'] = $data['email'];
+		$_SESSION['tel'] = $data['tel'];
+		$_SESSION['status'] = $data['status'];
+		echo "other";
+  	}
+
+
   	}
 }
 else if($_POST['type']=="register"){

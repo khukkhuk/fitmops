@@ -187,9 +187,10 @@
         			<label class="form-label">สถานะ</label>
         			<select class="form-control" name="status">
         				<option hidden>กรุณาเลือกข้อมูล</option>
-        				<option value="ครู อาจารย์">ครู อาจารย์</option>
-        				<option value="บุคลากร">บุคลากร</option>
-        				<option value="เจ้าหน้าที่">เจ้าหน้าที่</option>
+        				<!-- <option value="teacher">ครู อาจารย์</option> -->
+        				<option value="teacher">บุคลากร</option>
+        				<option value="officer">เจ้าหน้าที่</option>
+        				<option value="admin">ผู้ดูแลระบบ</option>
         			</select>
         		</div>
         	</div>

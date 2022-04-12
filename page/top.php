@@ -1,7 +1,16 @@
-<?php session_start(); ?>
+<?php session_start(); 
+if(empty($_SESSION['id'])){
+  echo "<script>alert('กรุณาเข้าสู่ระบบ')</script>";
+
+  echo "<META HTTP-EQUIV='Refresh' CONTENT='0 ;URL= ../index.php'>";
+}else{
+  // echo "<script>alert('1')</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Fitm Ops</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -182,14 +191,37 @@ th {
     </span>
   </center>
   <a style="margin-top:20px" class="active" href="#home">หน้าหลัก</a>
-  <a href="form-index.php">ฟอร์ม</a>
+  
+  <?php 
+    if(empty($_SESSION['status'])){ // student
+  ?>
+  <a href="student-index.php">หน้าหลัก</a>
   <a href="app-index.php">ยื่นคำร้อง</a>
-  <a href="information.php">ข้อมูลส่วนตัว</a>
+  <?php 
+    }
+    if(isset($_SESSION['status'])){
+        if($_SESSION['status'] == "teacher" ){
+  ?>
+  
+    <a href="teacher-index.php">หน้าหลัก</a>
+    <?php 
+        }
+    }
+    
+    if(isset($_SESSION['status'])){
+        if($_SESSION['status'] == "officer" || $_SESSION['status'] == "admin" ){
+    ?>
+  <a href="index.php">หน้าหลัก</a>
+  <a href="form-index.php">ฟอร์ม</a>
   <a href="person-index.php">รายชื่อเจ้าหน้าที่ บุคลากร</a>
   <a href="student-index.php">รายชื่อนิสิตนักศึกษา</a>
   <a href="role-index.php">ตำแหน่ง</a>
-  
+    <?php 
+        }
+    }
+    ?>
 
+  <a href="information.php">ข้อมูลส่วนตัว</a>
 </div>
 
 <div style="top:0;position:fixed;right: 0;background-color: #ff5151;height: 40px;width:100%;text-align: right;padding-top:6px;padding-bottom: -10px;z-index: 99;">
