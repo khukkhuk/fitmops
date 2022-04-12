@@ -169,7 +169,7 @@
 						// alert(res)
 						if(res == "std"){
 			    			$('#loginsuccess').toast('show');
-			    			window.location="page/index.php";
+			    			window.location="page/student-index.php";
 						}
 						else if(res == "teacher"){
 			    			$('#loginsuccess').toast('show');

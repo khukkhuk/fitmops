@@ -196,7 +196,8 @@ th {
     if(empty($_SESSION['status'])){ // student
   ?>
   <a href="student-index.php">หน้าหลัก</a>
-  <a href="app-index.php">ยื่นคำร้อง</a>
+  <!-- <a href="app-index.php">ยื่นคำร้อง</a> -->
+  <a href="form-student.php">รายการคำร้อง</a>
   <?php 
     }
     if(isset($_SESSION['status'])){
