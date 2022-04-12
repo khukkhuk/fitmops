@@ -168,6 +168,7 @@
 						if(res == "ok"){
 							alert("สมัครสำเร็จ")
 		    			$('#register_success').toast('show');
+		    			window.location="index.php";
 						}
 					}
 				})

@@ -190,7 +190,7 @@ th {
       <?php echo $_SESSION['email'];?>
     </span>
   </center>
-  <a style="margin-top:20px" class="active" href="#home">หน้าหลัก</a>
+  <!-- <a style="margin-top:20px" class="active" href="#home">หน้าหลัก</a> -->
   
   <?php 
     if(empty($_SESSION['status'])){ // student

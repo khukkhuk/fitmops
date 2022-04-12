@@ -149,6 +149,7 @@
 			user = $("#username").val()
 			text = user.substr(user.length-18,18)
 			// alert(text)
+			// alert('@fitm.kmutnb.ac.th')
 			if($("#username").val() == ""){
     			$('#fill_username').toast('show');
 			}
@@ -187,6 +188,7 @@
 					}
 				})
 			}else{
+				alert(text)
 		    	$('#fail').toast('show');
 			}
 			

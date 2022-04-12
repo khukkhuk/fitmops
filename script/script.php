@@ -17,19 +17,22 @@ if($_POST['type'] == "login"){
 		echo "std";
   	}else{ //other
 		$sql1 ="SELECT * FROM tb_person where email='".$_POST["username"]."' AND password='".$_POST["password"]."'";
+		// echo $sql1;
 		$result1 = mysqli_query($con,$sql1);
 		// print_r($result);
 	  	$rowcount1 = mysqli_num_rows($result1);
-	  	if($rowcount>0){
-  		$data=mysqli_fetch_assoc($result);
-  		// print_r($data);
-		$_SESSION['name'] = $data['name'];
-		$_SESSION['id'] = $data['id'];
-		$_SESSION['lastname'] = $data['lastname'];
-		$_SESSION['email'] = $data['email'];
-		$_SESSION['tel'] = $data['tel'];
-		$_SESSION['status'] = $data['status'];
-		echo "other";
+	  	if($rowcount1>0){
+  		$data1=mysqli_fetch_assoc($result1);
+  		// print_r($data1);
+		$_SESSION['name'] = $data1['name'];
+		$_SESSION['id'] = $data1['id'];
+		$_SESSION['lastname'] = $data1['lastname'];
+		$_SESSION['email'] = $data1['email'];
+		$_SESSION['tel'] = $data1['tel'];
+		$_SESSION['status'] = $data1['status'];
+		echo $data1['status'];
+  	}else{
+  		echo "false";
   	}
 
 
