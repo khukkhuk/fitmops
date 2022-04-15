@@ -24,7 +24,7 @@ if(empty($_SESSION['id'])){
 body {
   top: 0;
   margin: 0;
-  font-family: "supermarket", sans-serif;
+  font-family: "supermarket", sans-serif !important;
   background-color: #D3D4D7;
 
 }
@@ -133,7 +133,7 @@ th {
 
   .modalDialog {
     position: fixed;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     top: 0;
     right: 0;
     bottom: 0;
@@ -212,7 +212,7 @@ th {
     if(isset($_SESSION['status'])){
         if($_SESSION['status'] == "officer" || $_SESSION['status'] == "admin" ){
     ?>
-  <a href="index.php">หน้าหลัก</a>
+  <a href="officer-index.php">หน้าหลัก</a>
   <a href="form-index.php">ฟอร์ม</a>
   <a href="person-index.php">รายชื่อเจ้าหน้าที่ บุคลากร</a>
   <a href="student-index.php">รายชื่อนิสิตนักศึกษา</a>

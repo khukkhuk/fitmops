@@ -101,6 +101,7 @@
 						</div>		
 					</form>
 				<a href="#EditModal<?php echo $row['id'];?>" class="btn btn-primary">
+				<!-- <a href="form-edit.php" class="btn btn-primary"> -->
 					<img src="../img/1x/edit.png">
 				</a>
 					<form method="post" action="">

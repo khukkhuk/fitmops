@@ -81,9 +81,9 @@
 					</div>
 					<div class="row">
 						<div class="col-12 text-center" style="margin-top:15px">
-							<input type="text" name="count_doc" value="<?php echo $count_doc; ?>">
-							<input type="text" name="form_name" value="<?php echo $row['name']; ?>">
-							<input type="text" name="form_id" value="<?php echo $_GET['form_id']; ?>">
+							<input type="text" name="count_doc" value="<?php echo $count_doc; ?>" hidden>
+							<input type="text" name="form_name" value="<?php echo $row['name']; ?>" hidden>
+							<input type="text" name="form_id" value="<?php echo $_GET['form_id']; ?>" hidden>
 							<button class="btn btn-primary" type="submit" name="btn">ยืนยันรายการ</button>
 							<button class="btn btn-danger">ยกเลิก</button>
 						</div>
